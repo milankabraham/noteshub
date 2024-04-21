@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Traffic Police Officer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'notes_admin/style/login.css' %}">
+
+</head>
+<body>
+    
+    <div class="container">
+        {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+        <div class="login-box animated fadeInUp">
+            <div class="header">
+                <h1 class="title">Welcome Back!</h1>
+                <p class="subtitle">Log in to your account</p>
+            </div>
+            <form class="login-form" method="post" action="{% url 'notes_admin' %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Admin email" class="input-field" required name="admin-email">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" class="input-field" required name="admin-pass">
+                    <span class="password-toggle" onclick="togglePasswordVisibility()" >
+                        <i class="fas fa-eye-slash" style=" margin-left: -40px; margin-top: -10px;"></i>
+                    </span>
+                </div>
+                <button type="submit" class="submit-btn">Log In</button>
+            </form>
+            <div class="footer">
+                <a href="#" class="forget-link">Forgot Password?</a>
+                <a href="#" class="home-link">Home</a>
+            </div>
+        </div>
+        
+    </div>
+    <script src="{% static 'notes_admin/js/login.js' %}"></script>
+</body>
+</html>
